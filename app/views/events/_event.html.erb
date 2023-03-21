@@ -1,5 +1,12 @@
 <div class="col">
   <div class="card h-100">
+    <% if event.only_woman %>
+      <h5 class="m-0">
+        <span class="badge bg-white text-dark border">
+          <%= "女性限定" %>
+        </span>
+      </h5>
+    <% end %>
     <%= link_to event_path(event) do %>
       <%= image_tag event.decorate.thumbnail, class: 'card-img-top border-bottom' %>
     <% end %>
