@@ -100,16 +100,7 @@
                               data: { confirm: 'キャンセルします' }
                   %>
                 <% else %>
-                <% if @event.only_woman %>
-                  <% if current_user.gender == 'woman' %>
-                  <%= link_to 'このもくもく会に参加する',
-                              event_attendance_url(@event),
-                              class: 'btn btn-primary',
-                              method: :post,
-                              data: { confirm: '申し込みます' }
-                  %>
-                  <% end %>
-                <% elsif %>
+                <% if current_user.attend_button?(@event) %>
                   <%= link_to 'このもくもく会に参加する',
                               event_attendance_url(@event),
                               class: 'btn btn-primary',
@@ -129,9 +120,9 @@
           参加者（<%= @event.attendees.size %>人）
         </div>
         <div class="card-body">
-           <ul class="list-unstyled">
-             <%= render partial: 'events/attendee', collection: @event.attendees %>
-           </ul>
+          <ul class="list-unstyled">
+            <%= render partial: 'events/attendee', collection: @event.attendees %>
+          </ul>
         </div>
       </div>
 
